@@ -14,3 +14,7 @@ flutter run
 ```sh
 flutter pub run build_runner build --delete-conflicting-outputs
 ```
+
+# Useful Resource
+
+- [Dataclass Generator](https://app.quicktype.io/)
