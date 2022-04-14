@@ -1,6 +1,14 @@
 # MyFlutter
 My Flutter Playground
 
+# Start New Project
+
+```sh
+flutter create .
+flutter pub get
+flutter run
+```
+
 # Freezed
 ## Build 
 ```sh
