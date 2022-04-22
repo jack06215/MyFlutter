@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_sample/my_dataclass.dart';
+import 'package:freezed_sample/my_union.dart';
+import 'package:freezed_sample/my_shared_property.dart';
 
 void main() {
   runApp(const MyApp());
@@ -37,9 +39,26 @@ class _MyHomePageState extends State<MyHomePage> {
           MyClass(greeting: 'hello', instructions: ['freezed', 'MyClass']);
       final data_json = myClassToJson(data);
       final data_str = myClassFromJson(data_json);
-      print(data);
-      print(data_json);
-      print(data_str);
+      // print(data);
+      // print(data_json);
+      // print(data_str);
+
+      const unionExample = Union.error("oops");
+      print(
+        // `when` requires all callbacks to be not null
+        unionExample.when(
+          (value) => '$value',
+          loading: () => 'loading',
+          error: (message) => 'Error: $message',
+          complex: (a, b) => 'complex $a $b',
+        ),
+      );
+
+      var example = SharedProperty.person(name: 'Remi', age: 24);
+      // OK, `name` is shared between both .person and .city constructor
+      print(example.name); // Remi
+      example = SharedProperty.city(name: 'London', population: 8900000);
+      print(example.name); // London
       _counter++;
     });
   }
