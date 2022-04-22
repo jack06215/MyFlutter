@@ -1,6 +1,11 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:convert';
 
+/**
+ * part is "[...] a symptom for using library level privacy 
+ * as opposed to class level privacy." 
+ * (https://stackoverflow.com/questions/18403551/whats-the-reasoning-behind-part-and-part-of-in-dart-libraries)
+ */
 part 'my_dataclass.freezed.dart';
 part 'my_dataclass.g.dart';
 

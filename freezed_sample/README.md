@@ -1,5 +1,72 @@
 # freezed_sample
 
+## What's this for ?
+
+Freezed is a code-generation package that helps you to create data classes , without us doing anything, the following things:
+- `toString()` method
+- `==` operator
+- `hashCode` getter variable
+- `copyWith()` method
+- `toJson()` method
+
+## How does code generation works
+To get started with code generation, let's you have this dataclass. 
+```dart
+class User {
+  String get name;
+  
+  @nullable
+  String get nickname;
+}
+```
+The `build_runner` tool creates generated source in new files next to your manually maintained source, so we need to leave room for a generated implementation. That means an abstract class:
+```dart
+// We need to use "part" statement to pull in the generated code
+part 'user.g.dart';
+
+abstract class User {
+  String get name;
+  
+  @nullable
+  String get nickname;
+  
+  User._();
+  
+  // We will replace this part with the codegen file
+  factory User() = UserImpl;
+}
+```
+
+When you run code generation, it will output something like this:
+```dart
+// user.g.dart
+part of user;
+
+class _$User extends User {
+  String name;
+  String nickname;
+  // "_$" marks it as private and generated
+  _$User() : super._();
+  // Generated implementation goes here.
+}
+```
+
+Now we can use the generated code in our dataclass.
+```dart
+part 'user.g.dart';
+
+abstract class User with _$User{
+  String get name;
+  
+  @nullable
+  String get nickname;
+  
+  User._();
+  
+  factory User({String name, String nickname}) = _$User;
+}
+```
+
 ## Getting Started
 1. Add `pubspec.yaml`
 ```yaml
