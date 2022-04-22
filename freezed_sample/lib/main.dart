@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:freezed_sample/my_class.dart';
+import 'package:freezed_sample/my_dataclass.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,6 +33,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() {
     setState(() {
+      final data =
+          MyClass(greeting: 'hello', instructions: ['freezed', 'MyClass']);
+      final data_json = myClassToJson(data);
+      final data_str = myClassFromJson(data_json);
+      print(data);
+      print(data_json);
+      print(data_str);
       _counter++;
     });
   }

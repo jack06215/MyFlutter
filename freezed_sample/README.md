@@ -1,16 +1,34 @@
 # freezed_sample
 
-A new Flutter project.
-
 ## Getting Started
+1. Add `pubspec.yaml`
+```yaml
+dependencies:
+  freezed_annotation: ^1.1.0
+  flutter_riverpod: ^1.0.2
+  json_serializable: ^6.0.1
 
-This project is a starting point for a Flutter application.
+dev_dependencies:
+  build_runner: ^2.1.5
+  freezed: ^1.1.0
+```
+2. Optionally, you may want to ignore warnings in `analysis_options.yaml`
+```yaml
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
 
-A few resources to get you started if this is your first Flutter project:
+errors:
+  invalid_annotation_target: ignore
+```
+3. Create your dataclass, or use [quicktype](https://app.quicktype.io/) to help you generate it
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+4. Run code generator
+```sh
+# Flutter
+flutter pub run build_runner build --delete-conflicting-outputs
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Dart
+dart run build_runner build --delete-conflicting-outputs
+```

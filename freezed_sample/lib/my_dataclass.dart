@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:convert';
 
-part 'my_class.freezed.dart';
-part 'my_class.g.dart';
+part 'my_dataclass.freezed.dart';
+part 'my_dataclass.g.dart';
 
 MyClass myClassFromJson(String str) => MyClass.fromJson(json.decode(str));
 
