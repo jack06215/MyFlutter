@@ -190,5 +190,8 @@ int calculate() {
     ..addAll([1, 2, 3]);
   l1.add(1);
 
+  final llist = NumberList([1, 2, 3]);
+  llist.add(1);
+
   return 6 * 7;
 }
