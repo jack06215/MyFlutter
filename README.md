@@ -1,8 +1,3 @@
-# MyFlutter
-My Flutter Playground
-
-# Start New Project
-
 ## Flutter
 ```sh
 flutter create .
@@ -16,13 +11,8 @@ dart pub get
 dart run
 ```
 
-# Freezed
-## Build 
-```sh
-flutter pub run build_runner build --delete-conflicting-outputs
-dart run build_runner build --delete-conflicting-outputs
-```
+## How-to sample code
+- [Freezed](https://github.com/jack06215/MyFlutter/blob/main/freezed_sample/README.md)
 
-# Useful Resource
-
+## Useful Resource
 - [Dataclass Generator](https://app.quicktype.io/)
