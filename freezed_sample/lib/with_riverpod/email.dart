@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:meta/meta.dart';
 
 @immutable
 class Email {
@@ -7,15 +8,14 @@ class Email {
       validate(value),
     );
   }
-
   const Email._(this.value);
 
   static Email? fromString(String? value) {
     try {
       return Email(value);
-    } on EmptyEmailException catch (_) {
+    } on EmptyEmailException {
       return null;
-    } on DoNotMatchRegException catch (_) {
+    } on DoNotMatchRegException {
       return null;
     }
   }
@@ -26,7 +26,6 @@ class Email {
     }
 
     regExp(value);
-
     return value;
   }
 
