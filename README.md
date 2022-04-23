@@ -13,6 +13,7 @@ dart run
 
 ## How-to sample code
 - [Freezed](https://github.com/jack06215/MyFlutter/blob/main/freezed_sample/README.md)
+- [Working with immutable dataclass](https://github.com/jack06215/MyFlutter/blob/main/immutable_datastructure/README.md)
 
 ## Useful Resource
 - [Dataclass Generator](https://app.quicktype.io/)
