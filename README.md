@@ -4,6 +4,9 @@ flutter create .
 flutter pub get
 flutter run
 ```
+```
+nodemon -x "dart run bin/server.dart " -e dart
+```
 ## Dart
 ```sh
 dart create -t console-full . --force
