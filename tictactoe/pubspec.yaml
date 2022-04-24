@@ -1,4 +1,4 @@
-name: freezed_riverpod_state
+name: tictactoe
 description: A new Flutter application.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
@@ -16,6 +16,7 @@ dependencies:
 dev_dependencies:
   build_runner:
   import_sorter:
+  lint: ^1.0.0
   freezed: ^0.14.0
 
 flutter:

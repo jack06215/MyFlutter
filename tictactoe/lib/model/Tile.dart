@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'Tile.freezed.dart';
+part 'tile.freezed.dart';
 
 @freezed
 class Tile with _$Tile {

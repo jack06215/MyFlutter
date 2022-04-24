@@ -1,7 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:freezed_riverpod_state/model/FinishedState.dart';
 
-part 'Progress.freezed.dart';
+import 'package:tictactoe/model/finished_state.dart';
+
+part 'progress.freezed.dart';
 
 @freezed
 class Progress with _$Progress {

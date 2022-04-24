@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:freezed_riverpod_state/controller/GameStateNotifier.dart';
-import 'package:freezed_riverpod_state/model/GameState.dart';
-import 'package:freezed_riverpod_state/model/PlayerType.dart';
-import 'package:freezed_riverpod_state/model/Progress.dart';
-import 'package:freezed_riverpod_state/model/Tile.dart';
-import 'package:freezed_riverpod_state/model/FinishedState.dart';
-import 'package:freezed_riverpod_state/screen/CirclePainter.dart';
-import 'package:freezed_riverpod_state/screen/CrossPainter.dart';
+
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'package:tictactoe/controller/game_state_notifier.dart';
+import 'package:tictactoe/model/finished_state.dart';
+import 'package:tictactoe/model/game_state.dart';
+import 'package:tictactoe/model/player_type.dart';
+import 'package:tictactoe/model/progress.dart';
+import 'package:tictactoe/model/tile.dart';
+import 'package:tictactoe/screen/circle_painter.dart';
+import 'package:tictactoe/screen/cross_painter.dart';
+
 final _gameState = StateNotifierProvider<GameStateNotifier, GameState>(
-    (_) => GameStateNotifier(GameState(Map(), Progress.inProgress())));
+    (_) => GameStateNotifier(GameState({}, Progress.inProgress())));
 
 class Tiles extends HookConsumerWidget {
   void triggerDialog(BuildContext context, FinishedState finishState) {
@@ -35,17 +37,15 @@ class Tiles extends HookConsumerWidget {
           inProgress: () => {});
     });
 
-    return Container(
-      child: GridView.count(
-        physics: new NeverScrollableScrollPhysics(),
-        padding: EdgeInsets.all(12),
-        crossAxisCount: 3,
-        crossAxisSpacing: 12,
-        mainAxisSpacing: 12,
-        children: gameState.tiles.entries
-            .map<Widget>((entry) => TileWidget(entry))
-            .toList(),
-      ),
+    return GridView.count(
+      physics: const NeverScrollableScrollPhysics(),
+      padding: const EdgeInsets.all(12),
+      crossAxisCount: 3,
+      crossAxisSpacing: 12,
+      mainAxisSpacing: 12,
+      children: gameState.tiles.entries
+          .map<Widget>((entry) => TileWidget(entry))
+          .toList(),
     );
   }
 }
@@ -53,31 +53,31 @@ class Tiles extends HookConsumerWidget {
 class TileWidget extends HookConsumerWidget {
   const TileWidget(this.tileEntry);
 
-  final Duration duration = const Duration(milliseconds: 700);
   final MapEntry<Tile, PlayerType> tileEntry;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    const Duration duration = Duration(milliseconds: 700);
     final _controller = useAnimationController(
       duration: duration,
       upperBound: 100,
     );
     useValueChanged<PlayerType, Function(PlayerType, PlayerType)>(
         tileEntry.value, (_, __) {
-      if (tileEntry.value == PlayerType.EMPTY) {
+      if (tileEntry.value == PlayerType.empty) {
         _controller.reset();
       }
-      if (tileEntry.value != PlayerType.EMPTY) {
+      if (tileEntry.value != PlayerType.empty) {
         _controller.forward();
       }
     });
 
     switch (tileEntry.value) {
-      case PlayerType.CROSS:
+      case PlayerType.cross:
         return crossWidget(_controller);
-      case PlayerType.CIRCLE:
+      case PlayerType.circle:
         return circleWidget(_controller);
-      case PlayerType.EMPTY:
+      case PlayerType.empty:
         return emptyWidget(ref, tileEntry.key);
     }
   }
@@ -119,20 +119,20 @@ class TileWidget extends HookConsumerWidget {
 class FinishDialog extends HookConsumerWidget {
   final FinishedState _winner;
 
-  FinishDialog(this._winner);
+  const FinishDialog(this._winner);
 
   String subtitle() {
-    if (_winner == FinishedState.CROSS) {
+    if (_winner == FinishedState.cross) {
       return "Cross won!";
     }
-    if (_winner == FinishedState.CIRCLE) {
+    if (_winner == FinishedState.circle) {
       return "Circle won!";
     }
     return "Nobody lost!";
   }
 
   String title() {
-    if (_winner == FinishedState.DRAW) {
+    if (_winner == FinishedState.draw) {
       return "We have no loser!";
     }
     return "We have a winner!";
@@ -152,7 +152,7 @@ class FinishDialog extends HookConsumerWidget {
       ),
       actions: <Widget>[
         TextButton(
-          child: Text('Play Again'),
+          child: const Text('Play Again'),
           onPressed: () {
             provider.reset();
             Navigator.of(context).pop();

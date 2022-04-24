@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:freezed_riverpod_state/screen/Tiles.dart';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import 'package:tictactoe/screen/tiles.dart';
 
 void main() {
   runApp(ProviderScope(child: TicTacToe()));
