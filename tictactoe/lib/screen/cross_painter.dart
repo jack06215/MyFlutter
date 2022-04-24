@@ -19,19 +19,25 @@ class CrossPainter extends CustomPainter {
     createPath(canvas, center, crossAngle2, max(0, (percentage - 50) * 2));
   }
 
-  void createPath(final Canvas canvas, final Offset center,
-      final double startingAngle, final double percentage) {
+  void createPath(
+    final Canvas canvas,
+    final Offset center,
+    final double startingAngle,
+    final double percentage,
+  ) {
     final Paint paint = Paint()
       ..color = Colors.white
       ..strokeWidth = 15;
     final angle = math.pi;
 
     final Offset firstPoint = Offset(
-        radius * (percentage / 100) * math.cos(startingAngle),
-        radius * (percentage / 100) * math.sin(startingAngle));
+      radius * (percentage / 100) * math.cos(startingAngle),
+      radius * (percentage / 100) * math.sin(startingAngle),
+    );
     final Offset secondPoint = Offset(
-        radius * (percentage / 100) * math.cos(startingAngle + angle),
-        radius * (percentage / 100) * math.sin(startingAngle + angle));
+      radius * (percentage / 100) * math.cos(startingAngle + angle),
+      radius * (percentage / 100) * math.sin(startingAngle + angle),
+    );
     final Offset firstActualPoint =
         Offset(firstPoint.dx + center.dx, firstPoint.dy + center.dy);
     final Offset secondActualPoint =
