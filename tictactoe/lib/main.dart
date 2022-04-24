@@ -18,7 +18,7 @@ class TicTacToe extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Tic Tac Toe"),
+          title: const Text("Tic Tac Toe"),
         ),
         body: Tiles(),
       ),

@@ -7,6 +7,7 @@ import 'package:tictactoe/model/progress.dart';
 import 'package:tictactoe/model/tile.dart';
 
 class GameStateNotifier extends StateNotifier<GameState> {
+  // The initial state when a new game started
   GameStateNotifier(GameState state) : super(state) {
     final Map<Tile, PlayerType> tiles = <Tile, PlayerType>{};
     for (int x = 0; x < 3; x++) {
@@ -17,15 +18,22 @@ class GameStateNotifier extends StateNotifier<GameState> {
     this.state = state.copyWith(tiles: tiles, progress: Progress.inProgress());
   }
 
+  // Whenever a player place the mark on tile
   void toggle(Tile tile) {
+    // change tile state to either cross or circle
     state.tiles[tile] = state.currentPlayer;
+    // update the state all together
     state = state.copyWith(
+      // next player
       currentPlayer: _nextPlayer(),
+      // update progress, whether there is a winner or not
       progress: _determineProgress(),
+      // update tiles
       tiles: state.tiles.map((key, value) => MapEntry(key, value)),
     );
   }
 
+  // reset tiles
   void reset() {
     state = state.copyWith(
         currentPlayer: PlayerType.circle,
@@ -49,6 +57,7 @@ class GameStateNotifier extends StateNotifier<GameState> {
     return PlayerType.circle;
   }
 
+  // when the game is finshed, update the finshed state
   FinishedState? isFinished() {
     if (_hasThreeInARow(PlayerType.circle)) {
       return FinishedState.circle;
@@ -65,6 +74,7 @@ class GameStateNotifier extends StateNotifier<GameState> {
     return null;
   }
 
+  // return true if there is a matched, false otherwise
   bool _hasThreeInARow(PlayerType player) {
     final tiles = state.tiles.entries
         .where((element) => element.value == player)

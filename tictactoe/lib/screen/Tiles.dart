@@ -13,7 +13,8 @@ import 'package:tictactoe/screen/circle_painter.dart';
 import 'package:tictactoe/screen/cross_painter.dart';
 
 final _gameState = StateNotifierProvider<GameStateNotifier, GameState>(
-    (_) => GameStateNotifier(GameState({}, Progress.inProgress())));
+  (_) => GameStateNotifier(GameState({}, Progress.inProgress())),
+);
 
 class Tiles extends HookConsumerWidget {
   void triggerDialog(BuildContext context, FinishedState finishState) {
@@ -33,8 +34,9 @@ class Tiles extends HookConsumerWidget {
     useValueChanged<Progress, Function(Progress, Progress)>(gameState.progress,
         (progress, __) {
       gameState.progress.when(
-          finished: (winner) => {triggerDialog(context, winner)},
-          inProgress: () => {});
+        finished: (winner) => {triggerDialog(context, winner)},
+        inProgress: () => {},
+      );
     });
 
     return GridView.count(
@@ -121,7 +123,7 @@ class FinishDialog extends HookConsumerWidget {
 
   const FinishDialog(this._winner);
 
-  String subtitle() {
+  String get subtitle {
     if (_winner == FinishedState.cross) {
       return "Cross won!";
     }
@@ -131,7 +133,7 @@ class FinishDialog extends HookConsumerWidget {
     return "Nobody lost!";
   }
 
-  String title() {
+  String get title {
     if (_winner == FinishedState.draw) {
       return "We have no loser!";
     }
@@ -142,11 +144,11 @@ class FinishDialog extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final provider = ref.watch(_gameState.notifier);
     return AlertDialog(
-      title: Text(title()),
+      title: Text(title),
       content: SingleChildScrollView(
         child: ListBody(
           children: <Widget>[
-            Text(subtitle()),
+            Text(subtitle),
           ],
         ),
       ),
