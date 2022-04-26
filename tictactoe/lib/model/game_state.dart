@@ -7,7 +7,7 @@ import 'package:tictactoe/model/tile.dart';
 part 'game_state.freezed.dart';
 
 @freezed
-class GameState with _$GameState {
+abstract class GameState with _$GameState {
   factory GameState(
     Map<Tile, PlayerType> tiles,
     Progress progress, {

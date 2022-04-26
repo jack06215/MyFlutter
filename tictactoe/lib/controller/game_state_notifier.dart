@@ -5,6 +5,39 @@ import 'package:tictactoe/model/game_state.dart';
 import 'package:tictactoe/model/player_type.dart';
 import 'package:tictactoe/model/progress.dart';
 import 'package:tictactoe/model/tile.dart';
+import 'package:tictactoe/model/todo.dart';
+
+class CounterNotifier extends StateNotifier<int> {
+  CounterNotifier() : super(0);
+
+  void increment() => state++;
+  void decrement() => state--;
+}
+
+class TodosNotifier extends StateNotifier<List<Todo>> {
+  TodosNotifier() : super([]);
+
+  void addTodo(Todo todo) {
+    state = [...state, todo];
+  }
+
+  void removeTodo(String todoId) {
+    state = [
+      for (final todo in state)
+        if (todo.id != todoId) todo,
+    ];
+  }
+
+  void toggle(String todoId) {
+    state = [
+      for (final todo in state)
+        if (todo.id == todoId)
+          todo.copyWith(completed: !todo.completed)
+        else
+          todo,
+    ];
+  }
+}
 
 class GameStateNotifier extends StateNotifier<GameState> {
   /// The initial state when a new game started

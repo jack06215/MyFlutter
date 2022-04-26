@@ -5,7 +5,7 @@ import 'package:tictactoe/model/finished_state.dart';
 part 'progress.freezed.dart';
 
 @freezed
-class Progress with _$Progress {
+abstract class Progress with _$Progress {
   factory Progress.finished(FinishedState winner) = Finished;
   factory Progress.inProgress() = InProgress;
 }
