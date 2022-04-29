@@ -8,7 +8,7 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // You have to call it on the start screen
-    SizeConfig().init(context);
+    SizeConfig().init();
     return const Scaffold(
       body: Body(),
     );
