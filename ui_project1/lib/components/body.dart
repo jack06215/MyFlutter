@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:ui_project1/components/default_button.dart';
+
+import 'package:ui_project1/components/splash_content.dart';
 import 'package:ui_project1/constants.dart';
 import 'package:ui_project1/size_config.dart';
-import 'package:ui_project1/components/splash_content.dart';
 
 // https://github.com/abuanwar072/E-commerce-Complete-Flutter-UI/blob/Episode-1/lib/screens/splash/components/body.dart
 class Body extends StatefulWidget {
@@ -57,7 +59,7 @@ class _BodyState extends State<Body> {
                     horizontal: getProportionateScreenWidth(20)),
                 child: Column(
                   children: <Widget>[
-                    // const Spacer(),
+                    const Spacer(),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: List.generate(
@@ -65,6 +67,9 @@ class _BodyState extends State<Body> {
                         (index) => buildDot(index: index),
                       ),
                     ),
+                    const Spacer(flex: 3),
+                    DefaultButton(text: "Continue", onPressed: () => {}),
+                    const Spacer(),
                   ],
                 ),
               ),

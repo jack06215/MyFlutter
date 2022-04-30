@@ -35,3 +35,7 @@ flutter:
           weight: 700
         - asset: assets/fonts/muli/Muli-Light.ttf
           weight: 300
+
+import_sorter:
+  emojis: true
+  comments: false
