@@ -7,13 +7,6 @@ import 'package:tictactoe/model/progress.dart';
 import 'package:tictactoe/model/tile.dart';
 import 'package:tictactoe/model/todo.dart';
 
-class CounterNotifier extends StateNotifier<int> {
-  CounterNotifier() : super(0);
-
-  void increment() => state++;
-  void decrement() => state--;
-}
-
 class TodosNotifier extends StateNotifier<List<Todo>> {
   TodosNotifier() : super([]);
 
