@@ -4,22 +4,15 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:tictactoe/controller/game_state_notifier.dart';
-import 'package:tictactoe/model/finished_state.dart';
 import 'package:tictactoe/model/game_state.dart';
-import 'package:tictactoe/model/player_type.dart';
 import 'package:tictactoe/model/progress.dart';
 import 'package:tictactoe/model/tile.dart';
-import 'package:tictactoe/model/todo.dart';
 import 'package:tictactoe/screen/circle_painter.dart';
 import 'package:tictactoe/screen/cross_painter.dart';
 
   final _gameState = StateNotifierProvider<GameStateNotifier, GameState>(
     (ref) => GameStateNotifier(GameState({}, Progress.inProgress())),
   );
-
-  final _todosProvider = StateNotifierProvider<TodosNotifier, List<Todo>>((ref) {
-    return TodosNotifier();
-  });
 
   class Tiles extends HookConsumerWidget {
     void triggerDialog(BuildContext context, FinishedState finishState) {

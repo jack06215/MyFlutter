@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:tictactoe/model/player_type.dart';
 import 'package:tictactoe/model/progress.dart';
 import 'package:tictactoe/model/tile.dart';
 
@@ -13,4 +12,13 @@ abstract class GameState with _$GameState {
     Progress progress, {
     @Default(PlayerType.circle) PlayerType currentPlayer,
   }) = _GameState;
+}
+
+enum PlayerType {
+  @JsonValue('CROSS')
+  cross,
+  @JsonValue('CIRCLE')
+  circle,
+  @JsonValue('EMPTY')
+  empty
 }
