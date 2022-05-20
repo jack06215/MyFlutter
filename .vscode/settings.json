@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "locale": "cpp",
+        "xlocale": "cpp",
+        "sstream": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
+}
