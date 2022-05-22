@@ -1,51 +1,57 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
+  const MyHomePage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Container的背景修饰与前景修饰"),
+        title: const Text("Decorate background using Container"),
       ),
       body: Container(
         width: 100,
         height: 100,
-        // 背景修饰
+
+        /// Background decoration
+        /// linear gradient from black to grey
+        /// add box shadow effect
         decoration: const BoxDecoration(
-          // 从左到右，由黑色到灰色的渐变色
           gradient: LinearGradient(
             colors: [Colors.black, Colors.grey],
           ),
-          // 模糊阴影
           boxShadow: [BoxShadow(blurRadius: 10)],
         ),
-        // 子组件居中对齐
         alignment: Alignment.center,
-        // 子组件，白色正方形
+
+        /// Foreground decoration
+        /// - opacity
+        /// - circle
+        foregroundDecoration: BoxDecoration(
+          color: Colors.blue.withOpacity(0.5),
+          shape: BoxShape.circle,
+        ),
+
+        /// Red square
         child: Container(
-          color: Colors.white,
+          color: Colors.red,
           width: 50,
           height: 50,
-        ),
-        // 前景修饰
-        foregroundDecoration: BoxDecoration(
-          // 半透明的灰色
-          color: Colors.grey.withOpacity(0.5),
-          // 圆形
-          shape: BoxShape.circle,
         ),
       ),
     );
